@@ -20,7 +20,7 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
     public static final int MENU_ID_2 = 2;
     private ArrayList<Book> bookList;
 
-    private OnItemClickListener mOnItemClickListener;//声明点击时间对象
+    private OnItemClickListener mOnItemClickListener;//声明点击时间对象名称
 
     //设置点击时间对象
     public void setmOnItemClickListener(OnItemClickListener listener){
