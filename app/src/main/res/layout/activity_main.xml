@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/main_drawerLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context=".MainActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--滑动菜单布局-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linear_main"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#7f00ff"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/title_imgbtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_menu" />
+            <TextView
+                android:id="@+id/main_text"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="All"
+                android:textSize="25sp" />
+
+            <ImageButton
+                android:id="@+id/title_imgbtn2"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="200dp"
+                android:src="@drawable/ic_shortcut_search" />
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/recycle_view_books"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_main"
+            android:background="#0000" />
+
+        <ImageButton
+            android:id="@+id/main_imgbtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/jia"
+            android:src="@drawable/ic_shortcut_add" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/header"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/draw_shelf"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/ic_launcher_circle" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_menu"
+                android:background="#7f00ff"/>
+
+            <Button
+                android:id="@+id/draw_books"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Books"
+                android:textAllCaps="false" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_shortcut_search"
+                android:background="#7f00ff"/>
+            <Button
+                android:id="@+id/draw_search"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="Search"
+                android:textAllCaps="false"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
