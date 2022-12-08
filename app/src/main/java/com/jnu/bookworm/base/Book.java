@@ -5,9 +5,9 @@ import java.io.Serializable;
 public class Book implements Serializable {
     private String title;
     private String jianjie;
-    private int headId;
+    private String headId;
 
-    public Book(String title, String jianjie,int headId) {
+    public Book(String title, String jianjie,String headId) {
         this.title = title;
         this.headId = headId;
         this.jianjie=jianjie;
@@ -22,11 +22,11 @@ public class Book implements Serializable {
         this.title = title;
     }
 
-    public int getHeadId() {
+    public String getHeadId() {
         return headId;
     }
 
-    public void setHeadId(int headId) {
+    public void setHeadId(String headId) {
         this.headId = headId;
     }
     public void setJianjie(String jianjie) {this.jianjie = jianjie;}

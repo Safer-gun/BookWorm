@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.jnu.bookworm.base.Book;
 
 public class BookDesActivity extends AppCompatActivity {
@@ -30,7 +31,8 @@ public class BookDesActivity extends AppCompatActivity {
         Book book=(Book)b.getSerializable("book");
         booktitle.setText(book.getTitle());
         bookintro.setText(book.getJianjie());
-        bookcover.setImageResource(book.getHeadId());
+        Glide.with(this).load(book.getHeadId()).into(bookcover);
+//        bookcover.setImageResource(book.getHeadId());向诸葛亮借智慧
 
 
 //        Intent intent=getIntent();

@@ -20,11 +20,16 @@ public class EditBookActivity extends AppCompatActivity {
         position=this.getIntent().getIntExtra("position",0);
         String title=this.getIntent().getStringExtra("title");
         String jianjie=this.getIntent().getStringExtra("jianjie");
+        String bookcover=this.getIntent().getStringExtra("bookcover");
         EditText editTextTitle=findViewById(R.id.editTextbooktitle);
         EditText editJianjie=findViewById(R.id.editbookjianjie);
+        EditText editbookcover=findViewById(R.id.editTextbookcover);
 
         if((null!=title)){
             editTextTitle.setText(title);
+        }
+        if((null!=bookcover)){
+            editbookcover.setText(bookcover);
         }
         if((jianjie.equals("暂无简介"))){
             editJianjie.setText("");
@@ -43,6 +48,7 @@ public class EditBookActivity extends AppCompatActivity {
                 Intent intent=new Intent();
                 Bundle bundle=new Bundle();
                 bundle.putString("title",editTextTitle.getText().toString());
+                bundle.putString("bookcover",editbookcover.getText().toString());
                 if(editJianjie.getText().toString().equals(""))
                 {
                     bundle.putString("jianjie","暂无简介");

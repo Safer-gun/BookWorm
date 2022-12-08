@@ -53,8 +53,10 @@ public class MainActivity extends BaseActivity {
                         Bundle bundle=intent.getExtras();
                         String title= bundle.getString("title");
                         String jianjie=bundle.getString("jianjie");
+                        String bookcover=bundle.getString("bookcover");
+
                         int n=bookList.size();
-                        bookList.add(n,new Book(title,jianjie,R.drawable.book_no_name));
+                        bookList.add(n,new Book(title,jianjie,bookcover));
                         new DataSaver().save(this,bookList);
                         linearAdapter.notifyItemInserted(n);
 
@@ -72,10 +74,12 @@ public class MainActivity extends BaseActivity {
                         int position=bundle.getInt("position");
                         String title= bundle.getString("title");
                         String jianjie=bundle.getString("jianjie");
+                        String bookcover=bundle.getString("bookcover");
                         bookList.get(position).setTitle(title);
                         linearAdapter.notifyItemChanged(position);
                         bookList.get(position).setJianjie(jianjie);
                         linearAdapter.notifyItemChanged(position);
+                        bookList.get(position).setHeadId(bookcover);
                         new DataSaver().save(this,bookList);
 
                     }
@@ -154,7 +158,7 @@ public class MainActivity extends BaseActivity {
 
         if (bookList.size()==0) {
             for(int i=1;i<5;i++) {
-                bookList.add(new Book(i % 3 == 0 ? "软件项目管理案例教程（第4版）" : (i % 3 == 1 ? "创新工程实践" : "信息安全数学基础（第2版）"), "暂无简介",i % 3 == 0 ? R.drawable.book_2 : (i % 3 == 1 ? R.drawable.book_no_name : R.drawable.book_1)));
+                bookList.add(new Book(i % 3 == 0 ? "软件项目管理案例教程（第4版）" : (i % 3 == 1 ? "创新工程实践" : "信息安全数学基础（第2版）"), "暂无简介","http://apis.juhe.cn/goodbook/img/379cdafe13f92d62e99388182a6d08ec.jpg"));
             }
         }
         linearAdapter=new LinearAdapter(bookList);
@@ -184,6 +188,7 @@ public class MainActivity extends BaseActivity {
                 intent2.putExtra("position",item.getOrder());
                 intent2.putExtra("title",bookList.get(item.getOrder()).getTitle());
                 intent2.putExtra("jianjie",bookList.get(item.getOrder()).getJianjie());
+                intent2.putExtra("bookcover",bookList.get(item.getOrder()).getHeadId());
                 UpdateDataLaunher.launch(intent2);
                 break;
             case MENU_ID_DELETE:

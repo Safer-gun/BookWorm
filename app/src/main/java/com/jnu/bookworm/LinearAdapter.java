@@ -1,6 +1,5 @@
 package com.jnu.bookworm;
 
-import android.content.Context;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.jnu.bookworm.base.Book;
 
 import java.util.ArrayList;
@@ -33,10 +33,10 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
         this.bookList = bookList;
     }
 
-    private Context mContext;
-    public LinearAdapter(Context context){
-        this.mContext=context;
-    }
+//    private Context mContext;
+//    public LinearAdapter(Context context){
+//        this.mContext=context;
+//    }
 
     @NonNull
     @Override
@@ -52,8 +52,8 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
     public void onBindViewHolder(@NonNull LinearAdapter.LinearViewHolder holder, int position) {
         Book book=bookList.get(position);
         holder.title.setText(book.getTitle());
-        holder.head.setImageResource(book.getHeadId());
-
+//        holder.head.setImageResource(book.getHeadId());
+        Glide.with(holder.itemView).load(book.getHeadId()).into(holder.head);
         holder.jianjie.setText(book.getJianjie());
     }
 

@@ -8,16 +8,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/edit_book_textview"
             android:layout_width="400dp"
             android:layout_height="50dp"
-            android:text="图书名称"
+            android:text="图书信息"
             android:textSize="30sp"
             android:layout_gravity="center"
             android:gravity="center"
             tools:layout_editor_absoluteX="97dp"
             tools:layout_editor_absoluteY="225dp"/>
+        <EditText
+            android:id="@+id/editTextbookcover"
+            android:layout_width="400dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:hint="请输入图书封面网址"/>
         <EditText
             android:id="@+id/editTextbooktitle"
             android:layout_width="400dp"

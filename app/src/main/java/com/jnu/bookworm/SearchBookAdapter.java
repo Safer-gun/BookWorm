@@ -1,5 +1,6 @@
 package com.jnu.bookworm;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.jnu.bookworm.base.Book;
 
 import java.util.List;
@@ -18,6 +20,10 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.My
 
     public SearchBookAdapter(List<Book> bookList) {
         this.bookList = bookList;
+    }
+    private Context mContext;
+    public SearchBookAdapter(Context context){
+        this.mContext=context;
     }
 
     @NonNull
@@ -32,7 +38,9 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Book book=bookList.get(position);
         holder.title.setText(book.getTitle());
-        holder.head.setImageResource(book.getHeadId());
+//        holder.head.setImageResource(book.getHeadId());
+        Glide.with(holder.itemView).load(book.getHeadId()).into(holder.head);
+//        holder..setText(book.getJianjie());
 
     }
 
@@ -44,6 +52,7 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.My
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         ImageView head;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
