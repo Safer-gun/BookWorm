@@ -46,8 +46,8 @@ public class MainActivity extends BaseActivity {
 
 
     private ActivityResultLauncher<Intent>addDataLaunher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-        result -> {
-            if (null!=result) {
+            result -> {
+                if (null!=result) {
                     Intent intent=result.getData();
                     if (result.getResultCode()==EditBookActivity.CODE_SUCCESS) {
                         Bundle bundle=intent.getExtras();
@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity {
 
                     }
                 }
-        });
+            });
 
     private int item;
     private ActivityResultLauncher<Intent> UpdateDataLaunher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
@@ -208,4 +208,5 @@ public class MainActivity extends BaseActivity {
         }
         return super.onContextItemSelected(item);
     }
+
 }
