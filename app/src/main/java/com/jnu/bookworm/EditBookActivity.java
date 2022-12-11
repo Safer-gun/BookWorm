@@ -21,9 +21,14 @@ public class EditBookActivity extends AppCompatActivity {
         String title=this.getIntent().getStringExtra("title");
         String jianjie=this.getIntent().getStringExtra("jianjie");
         String bookcover=this.getIntent().getStringExtra("bookcover");
+        String bookisbn=this.getIntent().getStringExtra("isbn");
+        String bookauthor=this.getIntent().getStringExtra("author");
         EditText editTextTitle=findViewById(R.id.editTextbooktitle);
         EditText editJianjie=findViewById(R.id.editbookjianjie);
         EditText editbookcover=findViewById(R.id.editTextbookcover);
+        EditText editbookisbn=findViewById(R.id.editbookisbn);
+        EditText editbookauthor=findViewById(R.id.editTextbookauthor);
+
 
         if((null!=title)){
             editTextTitle.setText(title);
@@ -36,6 +41,18 @@ public class EditBookActivity extends AppCompatActivity {
         }
         else{
             editJianjie.setText(jianjie);
+        }
+        if((bookisbn.equals("暂未录入ISBN"))){
+            editbookisbn.setText("");
+        }
+        else{
+            editbookisbn.setText(bookisbn);
+        }
+        if((bookauthor.equals("暂未录入作者"))){
+            editbookauthor.setText("");
+        }
+        else{
+            editbookauthor.setText(bookauthor);
         }
 
 
@@ -56,6 +73,22 @@ public class EditBookActivity extends AppCompatActivity {
                 else
                 {
                     bundle.putString("jianjie",editJianjie.getText().toString());
+                }
+                if(editbookisbn.getText().toString().equals(""))
+                {
+                    bundle.putString("isbn","暂未录入isbn");
+                }
+                else
+                {
+                    bundle.putString("isbn",editbookisbn.getText().toString());
+                }
+                if(editbookauthor.getText().toString().equals(""))
+                {
+                    bundle.putString("author","暂未录入作者");
+                }
+                else
+                {
+                    bundle.putString("author",editbookauthor.getText().toString());
                 }
                 bundle.putInt("position",position);
                 intent.putExtras(bundle);

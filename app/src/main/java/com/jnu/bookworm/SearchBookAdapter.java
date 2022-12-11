@@ -1,6 +1,5 @@
 package com.jnu.bookworm;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.jnu.bookworm.base.Book;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.MyViewHolder>{
-    private List<Book> bookList;
+    private ArrayList<Book> bookList;
 
-    public SearchBookAdapter(List<Book> bookList) {
+    public SearchBookAdapter(ArrayList<Book> bookList) {
         this.bookList = bookList;
     }
-    private Context mContext;
-    public SearchBookAdapter(Context context){
-        this.mContext=context;
+
+    private SearchBookAdapter.OnItemClickListener mOnItemClickListener;//声明点击时间对象名称
+
+    //设置点击时间对象
+    public void setmOnItemClickListener(SearchBookAdapter.OnItemClickListener listener){
+        this.mOnItemClickListener=listener;
     }
+
+
 
     @NonNull
     @Override
@@ -38,9 +42,10 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Book book=bookList.get(position);
         holder.title.setText(book.getTitle());
+
 //        holder.head.setImageResource(book.getHeadId());
         Glide.with(holder.itemView).load(book.getHeadId()).into(holder.head);
-//        holder..setText(book.getJianjie());
+        holder.jianjie.setText(book.getJianjie());
 
     }
 
@@ -49,15 +54,28 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.My
         return bookList.size();
     }
 
+
+    public interface OnItemClickListener{//定义点击事件回调接口
+        void onItemClick(View view,int position);
+    }
+
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         ImageView head;
+        TextView jianjie;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title = itemView.findViewById(R.id.text_view_book_title);
             this.head = itemView.findViewById(R.id.image_view_book_cover);
+            this.jianjie=itemView.findViewById(R.id.text_view_book_jianjie);
+        }
+        public void onClick(View view) {
+            //点击事件对象调用方法
+            if(mOnItemClickListener!=null){
+                mOnItemClickListener.onItemClick(view,getAdapterPosition());
+            }
         }
 
         }

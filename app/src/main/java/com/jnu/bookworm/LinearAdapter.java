@@ -27,16 +27,9 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
         this.mOnItemClickListener=listener;
     }
 
-
-
     public LinearAdapter(ArrayList<Book> bookList) {
         this.bookList = bookList;
     }
-
-//    private Context mContext;
-//    public LinearAdapter(Context context){
-//        this.mContext=context;
-//    }
 
     @NonNull
     @Override
@@ -52,7 +45,6 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
     public void onBindViewHolder(@NonNull LinearAdapter.LinearViewHolder holder, int position) {
         Book book=bookList.get(position);
         holder.title.setText(book.getTitle());
-//        holder.head.setImageResource(book.getHeadId());
         Glide.with(holder.itemView).load(book.getHeadId()).into(holder.head);
         holder.jianjie.setText(book.getJianjie());
     }
@@ -70,6 +62,7 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
         TextView title;
         ImageView head;
         TextView jianjie;
+
 
         public LinearViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,7 +85,6 @@ public class LinearAdapter extends RecyclerView.Adapter<LinearAdapter.LinearView
             //点击事件对象调用方法
             if(mOnItemClickListener!=null){
                 mOnItemClickListener.onItemClick(view,getAdapterPosition());
-//                Toast.makeText(itemView.getContext(),"点击了第"+getAdapterPosition()+1+"个",Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -32,13 +32,8 @@ public class BookDesActivity extends AppCompatActivity {
         booktitle.setText(book.getTitle());
         bookintro.setText(book.getJianjie());
         Glide.with(this).load(book.getHeadId()).into(bookcover);
-//        bookcover.setImageResource(book.getHeadId());向诸葛亮借智慧
-
-
-//        Intent intent=getIntent();
-//        String booktitle=intent.getStringExtra("title");
-//        String bookjianjie=intent.getStringExtra("jianjie");
-//        String bookcover=intent.getStringExtra("head");
+        bookisbn.setText(book.getIsbn());
+        bookauthor.setText(book.getAuthor());
 
 
     }

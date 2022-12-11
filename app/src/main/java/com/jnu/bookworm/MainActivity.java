@@ -54,9 +54,11 @@ public class MainActivity extends BaseActivity {
                         String title= bundle.getString("title");
                         String jianjie=bundle.getString("jianjie");
                         String bookcover=bundle.getString("bookcover");
+                        String bookisbn=bundle.getString("isbn");
+                        String bookauthor=bundle.getString("author");
 
                         int n=bookList.size();
-                        bookList.add(n,new Book(title,jianjie,bookcover));
+                        bookList.add(n,new Book(title,jianjie,bookcover,bookisbn,bookauthor));
                         new DataSaver().save(this,bookList);
                         linearAdapter.notifyItemInserted(n);
 
@@ -75,7 +77,12 @@ public class MainActivity extends BaseActivity {
                         String title= bundle.getString("title");
                         String jianjie=bundle.getString("jianjie");
                         String bookcover=bundle.getString("bookcover");
+                        String bookisbn=bundle.getString("isbn");
+                        String bookauthor=bundle.getString("author");
                         bookList.get(position).setTitle(title);
+                        bookList.get(position).setIsbn(bookisbn);
+                        bookList.get(position).setAuthor(bookauthor);
+
                         linearAdapter.notifyItemChanged(position);
                         bookList.get(position).setJianjie(jianjie);
                         linearAdapter.notifyItemChanged(position);
@@ -118,17 +125,11 @@ public class MainActivity extends BaseActivity {
         mimgbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent1=new Intent(MainActivity.this,EditBookActivity.class);
-//                UpdateDataLaunher.launch(intent1);
                 Intent intent2=new Intent(MainActivity.this,EditBookActivity.class);
-//                intent2.putExtra("position",'1');
-//                intent2.putExtra("title","jaj");
                 intent2.putExtra("jianjie","");
+                intent2.putExtra("isbn","");
+                intent2.putExtra("author","");
                 addDataLaunher.launch(intent2);
-//
-//                Intent intent=new Intent(MainActivity.this,EditBookActivity.class);
-//                Toast.makeText(MainActivity.this,"aaaa", Toast.LENGTH_SHORT).show();
-//                startActivity(intent);
             }
         });
         drawsearchbtn.setOnClickListener(new View.OnClickListener() {
@@ -148,21 +149,10 @@ public class MainActivity extends BaseActivity {
         linearAdapter = new LinearAdapter(bookList);
         mRvMain.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 //        //文件读取和保存
-//        String bookURL = ContentURL.getBookURL();
-//        localData(bookURL);
-//        onSuccess();
-
-
         DataSaver dataSaver=new DataSaver();
         bookList=dataSaver.Load(this);
-
-        if (bookList.size()==0) {
-            for(int i=1;i<5;i++) {
-                bookList.add(new Book(i % 3 == 0 ? "软件项目管理案例教程（第4版）" : (i % 3 == 1 ? "创新工程实践" : "信息安全数学基础（第2版）"), "暂无简介","http://apis.juhe.cn/goodbook/img/379cdafe13f92d62e99388182a6d08ec.jpg"));
-            }
-        }
         linearAdapter=new LinearAdapter(bookList);
-
+//设置每一个item的点击事件
         linearAdapter.setmOnItemClickListener(new LinearAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -174,12 +164,8 @@ public class MainActivity extends BaseActivity {
             }
         });
         mRvMain.setAdapter(linearAdapter);
-
-
-
     }
 //加载成功之后显示数据
-
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -189,6 +175,8 @@ public class MainActivity extends BaseActivity {
                 intent2.putExtra("title",bookList.get(item.getOrder()).getTitle());
                 intent2.putExtra("jianjie",bookList.get(item.getOrder()).getJianjie());
                 intent2.putExtra("bookcover",bookList.get(item.getOrder()).getHeadId());
+                intent2.putExtra("isbn",bookList.get(item.getOrder()).getIsbn());
+                intent2.putExtra("author",bookList.get(item.getOrder()).getAuthor());
                 UpdateDataLaunher.launch(intent2);
                 break;
             case MENU_ID_DELETE:
